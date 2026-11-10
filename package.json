@@ -10,8 +10,7 @@
     "preview": "vite preview",
     "serve": "python3 -m http.server 8080"
   },
-  "devDependencies": {
+  "dependencies": {
     "vite": "^6.0.0"
   }
 }
-
