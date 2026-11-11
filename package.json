@@ -1,8 +1,8 @@
 {
-  "name": "kamo-portfolio",
+  "name": "vorenreds",
   "version": "1.0.0",
   "private": true,
-  "description": "Teo Creations - Video Editor & Motion Designer Portfolio",
+  "description": "Vorenreds - Video Editor & Motion Designer Portfolio",
   "type": "module",
   "scripts": {
     "dev": "vite",

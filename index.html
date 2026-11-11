@@ -3,33 +3,45 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <script>document.documentElement.classList.add("js");</script>
+  <script>
+    (function() {
+      document.documentElement.classList.add("js");
+      try {
+        var stored = localStorage.getItem("teo-theme");
+        var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var theme = stored ? stored : (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+        var metaTheme = document.querySelector('meta[name="theme-color"]');
+        if (metaTheme) metaTheme.setAttribute("content", theme === "dark" ? "#0e0e0e" : "#F8F8F5");
+      } catch (e) {}
+    })();
+  </script>
 
   <!-- Primary SEO -->
-  <title>Teo Creations | Video Editor &amp; Motion Designer in Kigali, Rwanda</title>
-  <meta name="description" content="Kigali video editor and motion designer Theogene Shumbusho (Teo Creations): commercials, social media videos, motion graphics and YouTube edits for brands.">
+  <title>Vorenreds | Video Editor &amp; Motion Designer in Kigali, Rwanda</title>
+  <meta name="description" content="Kigali video editor and motion designer Theogene Shumbusho (Vorenreds): commercials, social media videos, motion graphics and YouTube edits for brands.">
   <meta name="author" content="Theogene Shumbusho">
   <meta name="robots" content="index, follow, max-image-preview:large, max-video-preview:-1">
   <link rel="canonical" href="https://teocreations.pages.dev/">
-  <meta name="theme-color" content="#171717">
-  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#F8F8F5">
+  <meta name="color-scheme" content="light">
   <meta name="geo.region" content="RW">
   <meta name="geo.placename" content="Kigali">
 
   <!-- Open Graph / social sharing -->
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Teo Creations">
+  <meta property="og:site_name" content="Vorenreds">
   <meta property="og:locale" content="en_US">
   <meta property="og:url" content="https://teocreations.pages.dev/">
-  <meta property="og:title" content="Teo Creations: turning seconds into stories">
-  <meta property="og:description" content="Commercials, social media videos and motion graphics by Kigali video editor Theogene Shumbusho.">
+  <meta property="og:title" content="Vorenreds: turning seconds into stories">
+  <meta property="og:description" content="Commercials, social media videos and motion graphics by Kigali video editor Theogene Shumbusho (Vorenreds).">
   <meta property="og:image" content="https://teocreations.pages.dev/media/og.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Teo Creations, video editing and motion design">
+  <meta property="og:image:alt" content="Vorenreds, video editing and motion design">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Teo Creations: turning seconds into stories">
-  <meta name="twitter:description" content="Commercials, social media videos and motion graphics by Kigali video editor Theogene Shumbusho.">
+  <meta name="twitter:title" content="Vorenreds: turning seconds into stories">
+  <meta name="twitter:description" content="Commercials, social media videos and motion graphics by Kigali video editor Theogene Shumbusho (Vorenreds).">
   <meta name="twitter:image" content="https://teocreations.pages.dev/media/og.jpg">
 
   <!-- Icons -->
@@ -39,9 +51,12 @@
   <link rel="manifest" href="site.webmanifest">
 
   <!-- Performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="fonts/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/ibm-plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" href="media/posters/tega-bus.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 
   <!-- Structured data -->
@@ -53,7 +68,7 @@
         "@type": "WebSite",
         "@id": "https://teocreations.pages.dev/#website",
         "url": "https://teocreations.pages.dev/",
-        "name": "Teo Creations",
+        "name": "Vorenreds",
         "inLanguage": "en",
         "publisher": { "@id": "https://teocreations.pages.dev/#business" }
       },
@@ -61,7 +76,7 @@
         "@type": "Person",
         "@id": "https://teocreations.pages.dev/#theogene",
         "name": "Theogene Shumbusho",
-        "alternateName": "Teo",
+        "alternateName": "Vorenreds",
         "jobTitle": "Video Editor & Motion Designer",
         "image": "https://teocreations.pages.dev/media/teo.webp",
         "url": "https://teocreations.pages.dev/",
@@ -74,11 +89,11 @@
       {
         "@type": "ProfessionalService",
         "@id": "https://teocreations.pages.dev/#business",
-        "name": "Teo Creations",
+        "name": "Vorenreds",
         "slogan": "Turning seconds into stories",
         "description": "Video editing, motion graphics, commercials and short-form social media videos for brands.",
         "url": "https://teocreations.pages.dev/",
-        "logo": "https://teocreations.pages.dev/media/logo.png",
+        "logo": "https://teocreations.pages.dev/media/vorenreds.png",
         "image": "https://teocreations.pages.dev/media/og.jpg",
         "email": "teocreations1@gmail.com",
         "telephone": "+250780219036",
@@ -121,6 +136,13 @@
     <symbol id="i-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" /> <path d="m21.854 2.147-10.94 10.939" /></symbol>
     <symbol id="i-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" /> <path d="M20 3v4" /> <path d="M22 5h-4" /> <path d="M4 17v2" /> <path d="M5 18H3" /></symbol>
     <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18" /> <path d="m6 6 12 12" /></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
   </svg>
   <a class="skip" href="#work">Skip to work</a>
   <div class="cursor is-hidden" aria-hidden="true"><span class="cursor__label">Play</span></div>
@@ -130,31 +152,76 @@
   <div class="loader" aria-hidden="true">
     <div class="loader__panel loader__panel--back"></div>
     <div class="loader__panel loader__panel--front">
-      <div class="loader__logo"><svg viewBox="0 0 214 220" width="96" height="96" aria-hidden="true"><path class="loader__path" fill="#F7941D" d="M106.56 8.19 L124.44 8.19 L126.44 9.31 L133.69 9.19 L134.94 10.19 L139.56 10.19 L140.44 11.19 L144.31 11.19 L145.56 12.19 L147.69 12.06 L149.19 13.06 L150.69 13.06 L152.06 14.06 L154.69 14.06 L155.69 15.06 L157.69 15.06 L158.31 15.94 L159.81 16.19 L160.44 17.06 L162.44 17.06 L163.19 17.94 L164.31 18.06 L165.19 18.94 L166.56 19.19 L167.19 19.94 L168.81 19.94 L173.06 22.06 L174.56 23.56 L175.31 23.56 L176.56 24.56 L177.44 24.56 L178.44 25.44 L179.31 25.44 L181.19 27.19 L182.44 27.44 L183.69 28.81 L185.31 29.44 L186.81 30.94 L187.94 31.19 L190.56 33.94 L191.69 34.06 L196.31 38.81 L197.81 39.06 L205.06 46.31 L205.56 47.31 L198.56 54.81 L197.31 54.94 L190.44 61.94 L188.56 62.69 L180.69 70.81 L179.19 71.06 L178.56 71.94 L177.44 71.94 L176.81 71.06 L175.31 70.81 L172.81 68.06 L171.44 67.81 L169.81 65.94 L167.69 64.94 L165.56 62.69 L163.69 61.94 L162.56 60.69 L161.56 60.69 L159.69 58.81 L158.44 58.69 L156.81 56.94 L155.44 56.69 L153.94 55.06 L150.69 53.69 L149.06 52.06 L146.81 50.94 L145.31 50.94 L142.44 49.06 L140.44 49.06 L139.56 48.06 L135.81 48.06 L135.19 48.56 L135.06 151.31 L134.69 151.81 L129.06 151.81 L96.06 151.81 L95.44 151.31 L95.31 47.81 L94.44 47.44 L93.69 48.06 L92.44 47.94 L90.81 49.06 L89.44 48.94 L88.44 49.94 L86.44 49.94 L85.56 50.94 L84.44 50.94 L83.81 51.81 L82.56 51.94 L81.81 52.81 L80.31 53.06 L79.69 53.94 L78.44 54.06 L76.81 55.81 L75.56 56.06 L73.94 57.69 L72.69 58.06 L70.56 60.31 L68.69 61.06 L59.19 70.44 L59.06 71.69 L57.94 72.81 L57.19 72.94 L40.44 56.56 L30.06 45.69 L31.81 43.81 L32.31 42.44 L39.56 35.19 L40.69 35.06 L44.44 31.19 L45.69 31.06 L48.44 28.19 L49.56 28.19 L51.44 26.31 L52.56 26.19 L53.44 25.06 L58.56 22.81 L59.56 21.94 L60.69 21.81 L61.44 20.94 L62.56 20.94 L63.44 19.94 L64.56 19.94 L65.31 19.06 L66.56 18.94 L67.31 18.06 L68.44 17.94 L69.31 17.06 L71.19 16.94 L72.19 16.06 L73.81 16.06 L76.81 14.19 L79.69 14.06 L80.44 13.19 L82.69 13.06 L83.56 12.06 L86.56 12.06 L87.56 11.06 L90.69 11.19 L92.56 10.06 L96.69 10.19 L98.19 9.19 L105.56 9.19Z"/><path class="loader__path" fill="#603814" d="M24.31 53.06 L34.19 62.94 L35.94 63.31 L46.81 74.19 L47.06 75.81 L50.94 79.44 L50.94 84.44 L49.94 85.44 L49.94 87.44 L49.06 88.19 L48.94 90.44 L47.94 91.44 L47.94 94.44 L46.94 95.44 L46.94 98.56 L45.94 99.44 L45.94 105.56 L44.94 106.31 L45.94 107.31 L44.94 108.44 L44.94 115.56 L45.94 116.31 L44.94 117.69 L45.94 118.44 L45.94 123.56 L46.94 124.44 L46.94 127.56 L47.94 128.44 L47.94 130.56 L48.94 131.44 L48.94 133.56 L49.81 134.31 L49.94 135.56 L50.81 136.31 L50.94 137.56 L51.81 138.31 L52.06 139.81 L52.94 140.44 L53.06 141.81 L53.81 142.19 L54.94 144.19 L54.94 145.69 L56.69 146.81 L56.94 148.69 L59.81 151.06 L59.94 152.69 L66.19 158.94 L67.81 159.19 L71.19 162.94 L72.81 163.19 L74.19 164.94 L75.56 165.06 L77.19 166.94 L78.56 167.06 L79.19 167.94 L80.56 168.06 L81.19 168.94 L82.81 169.19 L83.31 170.06 L84.56 169.94 L85.31 171.06 L86.56 171.06 L87.31 172.06 L89.56 171.94 L90.31 173.06 L93.06 172.94 L93.81 173.19 L94.31 174.06 L96.81 173.81 L97.56 174.06 L98.31 175.06 L100.06 174.44 L101.81 175.19 L102.44 176.06 L103.81 176.06 L104.69 175.44 L106.44 175.44 L107.31 176.06 L123.69 176.06 L124.56 175.44 L127.06 175.31 L128.69 176.06 L129.44 175.06 L131.44 174.69 L133.69 175.06 L134.19 174.19 L135.19 173.81 L137.69 174.06 L138.44 173.06 L140.69 173.06 L141.44 172.06 L143.69 172.06 L144.44 171.06 L145.69 171.06 L146.31 170.06 L148.69 170.06 L149.44 169.06 L150.81 168.94 L152.19 167.19 L153.56 167.06 L154.19 166.19 L155.81 165.94 L157.44 164.06 L158.81 163.94 L161.44 161.19 L162.81 160.94 L164.44 159.19 L165.81 158.94 L167.19 157.19 L168.56 156.06 L169.81 155.94 L171.19 154.19 L172.69 154.06 L176.19 150.19 L177.56 150.06 L183.19 155.94 L184.44 155.94 L188.19 159.94 L189.69 160.19 L194.19 164.94 L195.56 165.06 L201.19 170.94 L202.44 171.06 L202.94 172.69 L203.94 173.44 L203.94 174.69 L201.81 176.81 L199.94 177.31 L199.69 178.94 L198.19 179.06 L192.81 184.81 L191.31 184.94 L188.69 187.81 L187.19 188.06 L186.06 189.19 L184.56 190.94 L183.19 191.06 L181.56 192.94 L180.44 192.94 L179.56 193.94 L178.31 193.94 L177.56 195.31 L176.31 194.94 L174.81 196.81 L173.31 196.94 L172.56 197.94 L171.31 197.94 L170.56 198.94 L169.44 198.94 L168.56 199.94 L167.44 199.94 L166.56 200.94 L165.44 200.94 L164.56 201.94 L163.44 201.94 L162.81 202.81 L161.44 202.94 L160.56 203.94 L159.19 204.06 L158.56 204.94 L156.44 204.94 L155.44 205.94 L153.31 205.94 L152.56 206.81 L150.31 206.94 L149.56 207.81 L146.31 207.94 L145.56 208.81 L141.31 208.94 L140.31 209.81 L135.31 209.94 L134.56 210.69 L130.44 210.81 L129.31 209.94 L128.56 210.94 L124.31 210.94 L123.19 211.69 L103.81 211.69 L102.69 210.94 L94.44 210.69 L93.69 209.94 L89.69 209.81 L88.69 208.94 L85.56 208.81 L84.69 207.94 L81.81 207.94 L80.69 206.94 L78.69 206.94 L77.69 205.94 L75.44 205.94 L74.56 204.94 L72.56 204.94 L71.56 203.94 L70.44 203.94 L69.56 202.94 L67.44 202.94 L66.81 202.06 L65.44 201.94 L64.56 200.94 L63.31 200.94 L62.69 199.94 L61.31 199.94 L59.69 197.94 L58.44 197.94 L57.69 196.94 L56.44 196.94 L55.69 195.94 L53.56 195.69 L52.69 193.94 L51.44 193.94 L50.69 192.94 L49.19 192.81 L47.81 191.06 L46.44 190.94 L45.81 190.06 L44.44 189.81 L43.19 188.81 L37.69 182.94 L36.19 182.81 L31.06 177.69 L31.06 176.31 L25.19 170.81 L24.94 169.19 L22.19 166.56 L21.94 165.19 L20.19 163.44 L20.06 161.31 L19.06 160.69 L19.06 159.31 L17.31 158.69 L18.06 157.31 L17.19 156.81 L17.06 155.31 L16.06 154.56 L16.06 153.31 L15.06 152.81 L14.06 151.56 L14.06 148.31 L12.94 147.56 L13.06 146.31 L11.94 145.19 L12.06 143.31 L10.94 142.31 L11.06 140.31 L10.06 139.56 L10.06 136.44 L9.06 135.56 L9.06 132.44 L8.06 131.56 L8.06 126.44 L7.06 125.56 L7.06 115.44 L6.06 114.44 L6.06 103.56 L7.06 102.56 L7.06 93.44 L8.06 92.56 L8.06 88.44 L9.06 87.56 L9.06 84.31 L10.06 83.56 L10.06 80.44 L11.06 79.69 L11.06 77.44 L12.06 76.69 L12.19 75.19 L13.06 74.69 L13.19 72.19 L14.06 71.69 L14.06 69.31 L16.06 67.69 L16.06 66.44 L17.06 65.69 L17.19 63.31 L17.94 62.81 L19.19 59.44 L20.94 57.81 L21.19 56.44Z"/></svg></div>
+      <div class="loader__logo">
+        <img src="media/vorenreds.png" alt="Vorenreds" class="brand-logo-img loader__logo-img">
+      </div>
       <div class="loader__tc"><span class="loader__rec"></span><span data-tc>00:00:00:00</span></div>
       <div class="loader__bar"><span></span></div>
-      <p class="loader__label">Teo Creations <span>Kigali, Rwanda</span></p>
+      <p class="loader__label">Vorenreds <span>Kigali, Rwanda</span></p>
     </div>
   </div>
 
   <header class="nav">
-    <a href="#top" class="nav__logo" data-scroll aria-label="Teo Creations, back to top">
-      <img src="media/logo.svg" alt="" width="34" height="34">
-      <span>Teo Creations</span>
-    </a>
-    <nav class="nav__links" aria-label="Main">
-      <a href="#work" data-scroll>Work</a>
-      <a href="#about" data-scroll>About</a>
-      <a href="#services" data-scroll>Services</a>
-    </nav>
-    <a href="#contact" class="btn btn--pill" data-scroll>Let's talk <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+    <div class="nav__inner">
+      <a href="#top" class="nav__logo" data-scroll aria-label="Vorenreds, back to top">
+        <span class="nav__logo-mark">
+          <img src="media/vorenreds.png" alt="Vorenreds" class="brand-logo-img" width="36" height="36">
+        </span>
+        <span class="nav__logo-meta">
+          <span class="nav__brand">Vorenreds</span>
+          <span class="nav__status"><span class="status-dot"></span> Available</span>
+        </span>
+      </a>
+
+      <nav class="nav__links" aria-label="Main navigation">
+        <a href="#work" data-scroll class="nav__link"><span>Work</span></a>
+        <a href="#about" data-scroll class="nav__link"><span>About</span></a>
+        <a href="#services" data-scroll class="nav__link"><span>Services</span></a>
+        <a href="#contact" data-scroll class="nav__link"><span>Contact</span></a>
+      </nav>
+
+      <div class="nav__actions">
+        <button class="theme-toggle" type="button" aria-label="Toggle dark and light theme" title="Toggle theme">
+          <svg class="icon theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true"><use href="#i-sun"/></svg>
+          <svg class="icon theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true"><use href="#i-moon"/></svg>
+        </button>
+        <a href="#contact" class="btn btn--pill nav__cta" data-scroll>
+          <span>Let's talk</span>
+          <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg>
+        </a>
+        <button class="nav__burger" type="button" aria-label="Open mobile menu" aria-expanded="false" aria-controls="mobile-nav">
+          <svg class="icon nav__burger-icon nav__burger-icon--open" aria-hidden="true"><use href="#i-menu"/></svg>
+          <svg class="icon nav__burger-icon nav__burger-icon--close" aria-hidden="true"><use href="#i-x"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="nav__drawer" id="mobile-nav" aria-hidden="true">
+      <div class="nav__drawer-content">
+        <nav class="nav__drawer-links">
+          <a href="#work" data-scroll class="nav__drawer-item"><span class="num">01</span><span>Selected Work</span></a>
+          <a href="#about" data-scroll class="nav__drawer-item"><span class="num">02</span><span>About Vorenreds</span></a>
+          <a href="#services" data-scroll class="nav__drawer-item"><span class="num">03</span><span>Services</span></a>
+          <a href="#contact" data-scroll class="nav__drawer-item"><span class="num">04</span><span>Contact</span></a>
+        </nav>
+        <div class="nav__drawer-bottom">
+          <div class="nav__drawer-meta">
+            <span class="status-dot"></span> Open for Q1/Q2 projects · Kigali, Rwanda
+          </div>
+          <a href="https://wa.me/250780219036?text=Hi%20Vorenreds%2C%20I%27d%20like%20to%20talk%20about%20a%20video%20project." target="_blank" rel="noopener" class="btn btn--big btn--whatsapp-cta">
+            <svg class="icon" aria-hidden="true"><use href="#i-brand-whatsapp"/></svg> WhatsApp Inquiry
+          </a>
+        </div>
+      </div>
+    </div>
   </header>
 
   <main>
     <!-- HERO -->
     <section class="hero" id="top" aria-label="Introduction">
       <div class="hero__content">
-        <h1 class="eyebrow hero__eyebrow" data-hero><strong>Teo Creations</strong> · Video editor &amp; motion designer in Kigali</h1>
+        <h1 class="eyebrow hero__eyebrow" data-hero><strong>Vorenreds</strong> · Video editor &amp; motion designer in Kigali</h1>
         <p class="hero__title">
           <span class="line"><span>Turning</span></span>
           <span class="line"><span>seconds into</span></span>
@@ -216,14 +283,14 @@
     <section class="about" id="about" aria-labelledby="about-title">
       <div class="about__grid">
         <div class="about__text">
-          <h2 class="eyebrow" id="about-title" data-reveal>About Teo Creations</h2>
-          <p class="about__statement" data-words>I'm Teo. I take raw footage and cut it into stories people actually stop scrolling for, content that <em>informs,</em> <em>entertains</em> and <em>inspires.</em></p>
-          <p class="about__body" data-reveal>I'm Theogene Shumbusho, a video editor and motion designer based in Kigali, Rwanda. From commercials and social campaigns to documentaries and YouTube, every cut, sound and frame has one job: keep your audience watching until the very last second.</p>
+          <h2 class="eyebrow" id="about-title" data-reveal>About Vorenreds</h2>
+          <p class="about__statement" data-words>I'm Vorenreds. I take raw footage and cut it into stories people actually stop scrolling for, content that <em>informs,</em> <em>entertains</em> and <em>inspires.</em></p>
+          <p class="about__body" data-reveal>I'm Theogene Shumbusho (Vorenreds), a video editor and motion designer based in Kigali, Rwanda. From commercials and social campaigns to documentaries and YouTube, every cut, sound and frame has one job: keep your audience watching until the very last second.</p>
         </div>
         <figure class="about__portrait">
           <div class="about__disc" aria-hidden="true"></div>
-          <img src="media/teo.webp" alt="Theogene Shumbusho, video editor at Teo Creations, smiling with arms crossed" width="820" height="1126" loading="lazy" data-speed="0.9">
-          <figcaption>Theogene “Teo” Shumbusho</figcaption>
+          <img src="media/teo.webp" alt="Theogene Shumbusho, video editor at Vorenreds, smiling with arms crossed" width="820" height="1126" loading="lazy" data-speed="0.9">
+          <figcaption>Theogene Shumbusho · Vorenreds</figcaption>
         </figure>
       </div>
     </section>
@@ -411,36 +478,120 @@
 
     <!-- CONTACT -->
     <section class="contact" id="contact" aria-labelledby="contact-title">
-      <p class="contact__status" data-reveal><span></span> Open for new projects</p>
-      <h2 class="contact__title" id="contact-title">
-        <span class="line"><span>Let's make</span></span>
-        <span class="line"><span>something people</span></span>
-        <span class="line"><span class="accent">remember.</span></span>
-      </h2>
-      <p class="contact__lead" data-reveal>Launching a product, running a campaign or growing a channel? Tell me what you're working on and let's turn it into something worth watching.</p>
-      <div class="contact__actions" data-reveal>
-        <a class="btn btn--big" href="https://wa.me/250780219036?text=Hi%20Teo%2C%20I%27d%20like%20to%20talk%20about%20a%20video%20project." target="_blank" rel="noopener" data-magnetic>
-          <svg class="icon" aria-hidden="true"><use href="#i-brand-whatsapp"/></svg> Chat on WhatsApp <span class="btn__arrow"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
-        </a>
-        <a class="btn btn--big btn--ghost" href="mailto:teocreations1@gmail.com?subject=New%20video%20project">
-          <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> teocreations1@gmail.com
-        </a>
+      <div class="contact__container">
+        <!-- Left Editorial Column -->
+        <div class="contact__intro">
+          <div class="contact__status" data-reveal>
+            <span class="status-dot"></span>
+            <span>Open for new projects · Q1/Q2</span>
+          </div>
+
+          <h2 class="contact__title" id="contact-title">
+            <span class="line"><span>Let's make</span></span>
+            <span class="line"><span>something people</span></span>
+            <span class="line"><span class="accent">remember.</span></span>
+          </h2>
+
+          <p class="contact__lead" data-reveal>
+            Launching a product, running a campaign or growing a channel? Tell me what you're working on and let's turn it into something worth watching.
+          </p>
+
+          <div class="contact__details" data-reveal>
+            <div class="contact__detail-item">
+              <span class="contact__detail-label">Location</span>
+              <span class="contact__detail-val"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-map-pin"/></svg> Kigali, Rwanda · CAT (GMT+2)</span>
+            </div>
+            <div class="contact__detail-item">
+              <span class="contact__detail-label">Response time</span>
+              <span class="contact__detail-val"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-clock"/></svg> Within 1 hour</span>
+            </div>
+            <div class="contact__detail-item">
+              <span class="contact__detail-label">Direct Line</span>
+              <a href="tel:+250780219036" class="contact__detail-val contact__detail-link"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-phone"/></svg> +250 780 219 036</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Interactive Hub Column -->
+        <div class="contact__hub" data-reveal>
+          <div class="contact__hub-card">
+            <div class="contact__hub-header">
+              <span class="contact__hub-badge">Direct Inquiry</span>
+              <h3 class="contact__hub-title">What are you creating?</h3>
+              <p class="contact__hub-sub">Select your project type to tailor your message:</p>
+            </div>
+
+            <!-- Project Type Interactive Chips -->
+            <div class="contact__chips" role="group" aria-label="Select project scope">
+              <button type="button" class="chip is-active" data-service="Commercial Video Ad">
+                <svg class="icon icon--sm" aria-hidden="true"><use href="#i-clapperboard"/></svg>
+                <span>Commercial Ads</span>
+              </button>
+              <button type="button" class="chip" data-service="Vertical Reels / Shorts">
+                <svg class="icon icon--sm" aria-hidden="true"><use href="#i-film"/></svg>
+                <span>Reels &amp; TikTok</span>
+              </button>
+              <button type="button" class="chip" data-service="Motion Graphics &amp; Animation">
+                <svg class="icon icon--sm" aria-hidden="true"><use href="#i-sparkles"/></svg>
+                <span>Motion Graphics</span>
+              </button>
+              <button type="button" class="chip" data-service="Video Editing &amp; Pacing">
+                <svg class="icon icon--sm" aria-hidden="true"><use href="#i-scissors"/></svg>
+                <span>Video Editing</span>
+              </button>
+              <button type="button" class="chip" data-service="Platform Script Writing">
+                <svg class="icon icon--sm" aria-hidden="true"><use href="#i-pen-line"/></svg>
+                <span>Script Writing</span>
+              </button>
+            </div>
+
+            <!-- Action Channels -->
+            <div class="contact__hub-actions">
+              <a id="inquiry-whatsapp" class="btn btn--big btn--whatsapp-cta" href="https://wa.me/250780219036?text=Hi%20Vorenreds%2C%20I%27d%20like%20to%20talk%20about%20a%20project%20involving%3A%20Commercial%20Video%20Ad." target="_blank" rel="noopener" data-magnetic>
+                <svg class="icon" aria-hidden="true"><use href="#i-brand-whatsapp"/></svg>
+                <span>Chat on WhatsApp</span>
+                <span class="btn__arrow"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+              </a>
+
+              <div class="contact__email-row">
+                <a id="inquiry-email" class="btn btn--big btn--ghost contact__email-btn" href="mailto:teocreations1@gmail.com?subject=New%20Project%20Inquiry%3A%20Commercial%20Video%20Ad">
+                  <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>
+                  <span>teocreations1@gmail.com</span>
+                </a>
+                <button type="button" class="contact-copy-btn" data-copy="teocreations1@gmail.com" aria-label="Copy email address" title="Copy email address">
+                  <svg class="icon contact-copy-icon" aria-hidden="true"><use href="#i-copy"/></svg>
+                  <svg class="icon contact-copied-icon" aria-hidden="true"><use href="#i-check"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Socials -->
+            <div class="contact__hub-socials">
+              <span class="contact__hub-socials-label">Follow &amp; Watch</span>
+              <ul class="socials">
+                <li><a href="https://www.instagram.com/teocreations1/" target="_blank" rel="noopener me"><svg class="icon" aria-hidden="true"><use href="#i-brand-instagram"/></svg> Instagram <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></li>
+                <li><a href="https://www.tiktok.com/@teocreations" target="_blank" rel="noopener me"><svg class="icon" aria-hidden="true"><use href="#i-brand-tiktok"/></svg> TikTok <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
-      <ul class="socials" data-reveal>
-        <li><a href="https://www.instagram.com/teocreations1/" target="_blank" rel="noopener me"><svg class="icon" aria-hidden="true"><use href="#i-brand-instagram"/></svg> Instagram <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></li>
-        <li><a href="https://www.tiktok.com/@teocreations" target="_blank" rel="noopener me"><svg class="icon" aria-hidden="true"><use href="#i-brand-tiktok"/></svg> TikTok <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></li>
-      </ul>
     </section>
   </main>
 
   <footer class="footer">
     <div class="footer__wordmark" aria-hidden="true">
-      <span>Teo</span> <em>Creations</em>
+      <span>Voren</span> <em>reds</em>
     </div>
     <div class="footer__row">
-      <a href="#top" class="footer__logo" data-scroll><img src="media/logo.svg" alt="" width="24" height="24"> Teo Creations</a>
-      <p>© <span data-year>2026</span> Teo Creations <span class="footer__place"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-map-pin"/></svg> Kigali, Rwanda</span></p>
-      <a href="https://wa.me/250780219036?text=Hi%20Teo%2C%20I%27d%20like%20to%20talk%20about%20a%20video%20project." class="footer__top" target="_blank" rel="noopener"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-brand-whatsapp"/></svg> +250 780 219 036</a>
+      <a href="#top" class="footer__logo" data-scroll>
+        <span class="footer__logo-mark">
+          <img src="media/vorenreds.png" alt="Vorenreds" class="brand-logo-img" width="28" height="28">
+        </span>
+        <span>Vorenreds</span>
+      </a>
+      <p>© <span data-year>2026</span> Vorenreds <span class="footer__place"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-map-pin"/></svg> Kigali, Rwanda</span></p>
+      <a href="https://wa.me/250780219036?text=Hi%20Vorenreds%2C%20I%27d%20like%20to%20talk%20about%20a%20project%20involving%3A%20Commercial%20Video%20Ad." class="footer__top" target="_blank" rel="noopener"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-brand-whatsapp"/></svg> +250 780 219 036</a>
       <a href="#top" class="footer__top" data-scroll>Back to top <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-up"/></svg></a>
     </div>
   </footer>

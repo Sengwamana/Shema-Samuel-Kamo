@@ -1,4 +1,4 @@
-/* Teo Creations — interactions
+/* Vorenreds — interactions
    GSAP + ScrollTrigger for motion, Lenis for smooth scrolling (self-hosted in js/vendor).
    Everything degrades gracefully: without the libraries or with
    reduced motion, the page is a normal, fully visible scrolling page. */
@@ -107,6 +107,120 @@
   };
   if (lenis) lenis.on("scroll", ({ scroll }) => onScroll(scroll));
   else window.addEventListener("scroll", () => onScroll(window.scrollY), { passive: true });
+
+  /* --------------------------------------------------------- Theme Toggle */
+
+  const themeToggle = $(".theme-toggle");
+  const metaTheme = $('meta[name="theme-color"]');
+
+  const updateThemeUI = (theme) => {
+    document.documentElement.setAttribute("data-theme", theme);
+    if (metaTheme) metaTheme.setAttribute("content", theme === "dark" ? "#0e0e0e" : "#F8F8F5");
+    if (themeToggle) {
+      themeToggle.setAttribute("aria-label", theme === "dark" ? "Switch to light theme" : "Switch to dark theme");
+      themeToggle.setAttribute("title", theme === "dark" ? "Switch to light theme" : "Switch to dark theme");
+    }
+  };
+
+  const getActiveTheme = () => {
+    return document.documentElement.getAttribute("data-theme") || "light";
+  };
+
+  if (themeToggle) {
+    updateThemeUI(getActiveTheme());
+    themeToggle.addEventListener("click", () => {
+      const current = getActiveTheme();
+      const next = current === "dark" ? "light" : "dark";
+      updateThemeUI(next);
+      try {
+        localStorage.setItem("teo-theme", next);
+      } catch (e) {}
+    });
+  }
+
+  /* -------------------------------------------------------- Mobile Drawer */
+
+  const burger = $(".nav__burger");
+  const drawer = $(".nav__drawer");
+  if (burger && drawer) {
+    const toggleDrawer = (open) => {
+      const isOpen = open !== undefined ? open : !nav.classList.contains("is-drawer-open");
+      nav.classList.toggle("is-drawer-open", isOpen);
+      burger.setAttribute("aria-expanded", String(isOpen));
+      drawer.setAttribute("aria-hidden", String(!isOpen));
+      if (isOpen && lenis) lenis.stop();
+      else if (!isOpen && lenis) lenis.start();
+    };
+
+    burger.addEventListener("click", () => toggleDrawer());
+
+    $$(".nav__drawer-item", drawer).forEach((link) => {
+      link.addEventListener("click", () => toggleDrawer(false));
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && nav.classList.contains("is-drawer-open")) {
+        toggleDrawer(false);
+      }
+    });
+  }
+
+  /* ------------------------------------------- Contact Interactive Hub */
+
+  const chips = $$(".contact__chips .chip");
+  const whatsappBtn = $("#inquiry-whatsapp");
+  const emailBtn = $("#inquiry-email");
+
+  const updateInquiryLinks = () => {
+    const activeChips = chips.filter((c) => c.classList.contains("is-active"));
+    const services = activeChips.map((c) => c.dataset.service || c.textContent.trim()).join(", ");
+    const phrase = services.length > 0 ? services : "General Video & Motion Inquiry";
+
+    if (whatsappBtn) {
+      const waText = encodeURIComponent(`Hi Vorenreds, I'd like to discuss a project involving: ${phrase}.`);
+      whatsappBtn.href = `https://wa.me/250780219036?text=${waText}`;
+    }
+    if (emailBtn) {
+      const emSubject = encodeURIComponent(`New Project Inquiry: ${phrase}`);
+      emailBtn.href = `mailto:teocreations1@gmail.com?subject=${emSubject}`;
+    }
+  };
+
+  chips.forEach((chip) => {
+    chip.addEventListener("click", () => {
+      chip.classList.toggle("is-active");
+      // Guarantee at least one service is selected for seamless UX
+      if (!chips.some((c) => c.classList.contains("is-active"))) {
+        chip.classList.add("is-active");
+      }
+      updateInquiryLinks();
+    });
+  });
+
+  // Copy email button
+  const copyBtn = $(".contact-copy-btn");
+  if (copyBtn) {
+    copyBtn.addEventListener("click", async () => {
+      const textToCopy = copyBtn.dataset.copy || "teocreations1@gmail.com";
+      try {
+        await navigator.clipboard.writeText(textToCopy);
+        copyBtn.classList.add("is-copied");
+        setTimeout(() => copyBtn.classList.remove("is-copied"), 2200);
+      } catch (err) {
+        // Fallback for environments where clipboard API is restricted
+        const ta = document.createElement("textarea");
+        ta.value = textToCopy;
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+        copyBtn.classList.add("is-copied");
+        setTimeout(() => copyBtn.classList.remove("is-copied"), 2200);
+      }
+    });
+  }
 
   /* --------------------------------------------------------------- Videos */
 
@@ -284,12 +398,12 @@
   if (lenis) lenis.stop();
 
   // Starting states for the intro (hidden behind the loader).
-  gsap.set(".hero__title .line > span", { yPercent: 140 });
-  gsap.set("[data-hero]", { autoAlpha: 0, y: 24 });
-  gsap.set(".nav", { autoAlpha: 0, y: -20 });
+  gsap.set(".hero__title .line > span", { yPercent: 120 });
+  gsap.set("[data-hero]", { autoAlpha: 0, y: 20 });
+  gsap.set(".nav", { autoAlpha: 0, y: -16 });
   // Animate inner layers only: CSS positions the outer .hero-phone / disc.
-  gsap.set(".hero-phone__body", { y: 220, autoAlpha: 0 });
-  gsap.set(".hero__disc", { x: 0, y: 0, xPercent: -50, yPercent: -48, scale: 0.6, autoAlpha: 0 });
+  gsap.set(".hero-phone__body", { y: 160, autoAlpha: 0 });
+  gsap.set(".hero__disc", { x: 0, y: 0, xPercent: -50, yPercent: -48, scale: 0.7, autoAlpha: 0 });
 
   // Loader: logo builds, timecode runs, then a two-layer curtain lifts.
   const tcEl = $("[data-tc]");
