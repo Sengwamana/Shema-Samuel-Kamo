@@ -1,7 +1,7 @@
 {
-  "name": "Vorenreds",
-  "short_name": "Vorenreds",
-  "description": "Video editing, motion graphics and short-form content by Vorenreds.",
+  "name": "Vorén",
+  "short_name": "Vorén",
+  "description": "Video editing, motion graphics and short-form content by Vorén.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#171717",

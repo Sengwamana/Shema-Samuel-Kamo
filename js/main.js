@@ -1,4 +1,4 @@
-/* Vorenreds — interactions
+/* Vorén — interactions
    GSAP + ScrollTrigger for motion, Lenis for smooth scrolling (self-hosted in js/vendor).
    Everything degrades gracefully: without the libraries or with
    reduced motion, the page is a normal, fully visible scrolling page. */
@@ -177,8 +177,8 @@
     const phrase = services.length > 0 ? services : "General Video & Motion Inquiry";
 
     if (whatsappBtn) {
-      const waText = encodeURIComponent(`Hi Vorenreds, I'd like to discuss a project involving: ${phrase}.`);
-      whatsappBtn.href = `https://wa.me/250780219036?text=${waText}`;
+      const waText = encodeURIComponent(`Hi Vorén, I'd like to discuss a project involving: ${phrase}.`);
+      whatsappBtn.href = `https://wa.me/250789906133?text=${waText}`;
     }
     if (emailBtn) {
       const emSubject = encodeURIComponent(`New Project Inquiry: ${phrase}`);
@@ -548,6 +548,7 @@
   mm.add("(min-width: 900px)", () => {
     const track = $(".reels__track");
     const distance = () => Math.max(1, track.scrollWidth - window.innerWidth);
+    if (track.scrollWidth - window.innerWidth < 8) return;
     gsap.to(track, {
       x: () => -distance(),
       ease: "none",

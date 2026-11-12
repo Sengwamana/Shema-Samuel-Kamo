@@ -1165,6 +1165,10 @@ h2 em, .accent {
   padding: 0 var(--gutter);
   width: max-content;
 }
+.reels__track--single {
+  width: auto;
+  justify-content: center;
+}
 
 .phone {
   flex: none;

@@ -1,8 +1,8 @@
 {
-  "name": "vorenreds",
+  "name": "voren",
   "version": "1.0.0",
   "private": true,
-  "description": "Vorenreds - Video Editor & Motion Designer Portfolio",
+  "description": "Vorén - Video Editor & Motion Designer Portfolio",
   "type": "module",
   "scripts": {
     "dev": "vite",
