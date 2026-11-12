@@ -1495,6 +1495,12 @@ h2 em, .accent {
   transition: background 0.35s ease;
 }
 .sketch .eyebrow { color: var(--brown); }
+[data-theme="dark"] .sketch {
+  --text-primary: #171717;
+  --text-secondary: #565652;
+  --text-muted: #7E7E7A;
+  --line: rgba(23, 23, 23, 0.09);
+}
 [data-theme="dark"] .sketch .eyebrow { color: var(--accent); }
 .sketch h2 {
   font-family: var(--font-display);
